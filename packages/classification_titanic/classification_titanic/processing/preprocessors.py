@@ -91,6 +91,7 @@ class ExtractFirstLetter(BaseEstimator, TransformerMixin):
 
         return X
 
+
 # frequent label categorical encoder
 class RareLabelCategoricalEncoder(BaseEstimator, TransformerMixin):
 
