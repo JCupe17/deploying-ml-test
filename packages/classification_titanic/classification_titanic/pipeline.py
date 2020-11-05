@@ -3,6 +3,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from classification_titanic.processing import preprocessors as pp
+from classification_titanic.processing import features
 from classification_titanic.config import config
 
 
@@ -17,7 +18,7 @@ titanic_pipe = Pipeline(
         ('numerical_imputer',
             pp.NumericalImputer(variables=config.NUMERICAL_VARS)),
         ('extract_first_letter',
-            pp.ExtractFirstLetter(variables=config.CABIN)),
+            features.ExtractFirstLetter(variables=config.CABIN)),
         ('rare_label_encoder',
             pp.RareLabelCategoricalEncoder(tol=0.05, variables=config.CATEGORICAL_VARS)),
         ('categorical_encoder',
