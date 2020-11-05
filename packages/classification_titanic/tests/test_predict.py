@@ -16,3 +16,19 @@ def test_make_single_prediction():
     # Test
     assert subject is not None
     assert isinstance(subject.get("predictions")[0], (int, np.integer))
+
+
+def test_make_multiple_predictions():
+    # Data
+    test_data = load_dataset(file_name=config.TESTING_DATA_FILE)
+    original_data_length = len(test_data)
+    multiple_test_json = test_data.to_json(orient="records")
+
+    # Predict
+    subject = make_prediction(input_data=multiple_test_json)
+
+    # Test
+    assert subject is not None
+
+    # We manage missing values so we do not remove any row
+    assert len(subject.get('predictions')) == original_data_length
