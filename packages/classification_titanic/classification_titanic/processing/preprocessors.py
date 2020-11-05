@@ -3,6 +3,8 @@ import pandas as pd
 
 from sklearn.base import BaseEstimator, TransformerMixin
 
+from classification_titanic.processing.errors import InvalidModelInputError
+
 
 # Add binary variable to indicate missing values
 class MissingIndicator(BaseEstimator, TransformerMixin):
@@ -66,6 +68,16 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
     def transform(self, X):
 
         X = X.copy()
+
+        # TODO: Check the validity of this error
+        # Check that the values are non-negative
+        """if not (X[self.variables] > 0).all().all():
+            vars_ = self.variables[(X[self.variables] > 0).any()]
+
+            raise InvalidModelInputError(
+                f"Variables contain negative values: {vars_}"
+            )"""
+
         for var in self.variables:
             X[var] = X[var].fillna(self.imputer_dict_[var])
         return X

@@ -6,6 +6,9 @@ from classification_titanic.processing import preprocessors as pp
 from classification_titanic.processing import features
 from classification_titanic.config import config
 
+import logging
+
+_logger = logging.getLogger(__name__)
 
 titanic_pipe = Pipeline(
     # complete with the list of steps from the preprocessors file

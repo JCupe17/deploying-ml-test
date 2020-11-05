@@ -5,6 +5,11 @@ from sklearn.model_selection import train_test_split
 from classification_titanic import pipeline
 from classification_titanic.processing.data_management import load_dataset, save_pipeline
 from classification_titanic.config import config
+from classification_titanic import __version__ as _version
+
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 def run_training() -> None:
@@ -20,6 +25,7 @@ def run_training() -> None:
 
     pipeline.titanic_pipe.fit(X_train, y_train)
 
+    _logger.info(f"saving model version: {_version}")
     save_pipeline(pipeline_to_persist=pipeline.titanic_pipe)
 
 

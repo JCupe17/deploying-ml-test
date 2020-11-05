@@ -6,7 +6,8 @@ TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 
 # model
-PIPELINE_NAME = "logistic_regression.pkl"
+PIPELINE_NAME = "logistic_regression"
+PIPELINE_SAVE_FILE = f"{PIPELINE_NAME}_output_v"
 
 # data
 DATA_FILE = "titanic.csv"
