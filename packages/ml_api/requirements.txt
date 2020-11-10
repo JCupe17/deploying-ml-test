@@ -1,5 +1,8 @@
 # API
 flask==1.0.2
 
+# schema validation
+marshmallow==2.17.0
+
 # Local classification model package
 -e "/Users/jeancupe/Projects/Projets_perso/Udemy/deploying-ml-test/packages/classification_titanic"

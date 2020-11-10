@@ -33,16 +33,19 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     test_data = load_dataset(file_name=model_config.TESTING_DATA_FILE)
     post_json = test_data[0:1].to_json(orient='records')
 
-    print(f'POST_JSON: {post_json}')
+    print(f"POST JSON {post_json}")
 
     response = flask_test_client.post('/v1/predict/classification',
                                       json=post_json)
 
-    print(f'RESPONSE: {response}')
-
     assert response.status_code == 200
+
     response_json = json.loads(response.data)
-    prediction = response_json['predictions']
+    if isinstance(response_json['predictions'], list):
+        prediction = response_json['predictions'][0]
+    else:
+        prediction = response_json['predictions']
     response_version = response_json['version']
+
     assert isinstance(prediction, int)
     assert response_version == _version
